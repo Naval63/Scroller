@@ -15,22 +15,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
 
         const direction = event.wheelDelta < 0 ? 1 : -1;
+
+        scroll(direction)
+    })
+
+        const scroll = (direction) => {
         
-        if(direction === 1) {
-            const isLastSection = currentSectionIndex === sections.length -1;
-            if(isLastSection) return;
-        } else if(direction === -1) {
-            const firstSection = currentSectionIndex === 0;
-            if(firstSection) return;
+            if(direction === 1) {
+                const isLastSection = currentSectionIndex === sections.length -1;
+                if(isLastSection) return;
+            } else if(direction === -1) {
+                const firstSection = currentSectionIndex === 0;
+                if(firstSection) return;
         }
 
         currentSectionIndex = currentSectionIndex + direction;
-        console.log(currentSectionIndex)
+        
+        scrollToCurrentSection() 
+    }
+   
 
-        sections[currentSectionIndex].scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        })
-
-    })
+        const scrollToCurrentSection = () => {
+            sections[currentSectionIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            })
+        }
 });
